@@ -1,0 +1,38 @@
+{
+  "name": "datastream-forge",
+  "version": "1.0.0",
+  "description": "High-Throughput Partitioned Event Streaming, Schema Registry & Window Aggregation Engine",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "seed": "node server/utils/seedStreams.js",
+    "test": "node --test server/tests/*.test.js",
+    "test:coverage": "node --test --experimental-test-coverage server/tests/*.test.js"
+  },
+  "keywords": [
+    "data-engineering",
+    "event-streaming",
+    "kafka",
+    "partitioning",
+    "schema-registry",
+    "window-aggregation",
+    "dlq",
+    "stream-processing"
+  ],
+  "author": "developertdsl-prog <developer.tdsl@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
