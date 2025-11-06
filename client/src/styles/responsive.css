@@ -1,0 +1,24 @@
+@media (max-width: 1024px) {
+  .stream-metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .topics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .stream-navbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .stream-metrics-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .topics-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .modal-dialog {
+    width: 95% !important;
+  }
+}
