@@ -11,41 +11,6 @@
 
 ---
 
-## 🏛️ System Architecture
-
-```mermaid
-flowchart TD
-    Producers["Producers / Event Sources"] -->|"Produce Event (Key, Payload)"| Router["Consistent Hash Partition Router"]
-    
-    subgraph Ingestion & Validation
-        Router --> SchemaGate["Schema Registry Validator"]
-        SchemaGate -->|"Invalid Payload"| DLQ[("Dead Letter Queue (DLQ)")]
-        SchemaGate -->|"Valid Payload"| CommitLog["Append-Only Commit Log Engine"]
-    end
-
-    subgraph Partition Storage
-        CommitLog --> P0["Partition 0 (Monotonic Offsets)"]
-        CommitLog --> P1["Partition 1 (Monotonic Offsets)"]
-        CommitLog --> P2["Partition 2 (Monotonic Offsets)"]
-        CommitLog --> P3["Partition 3 (Monotonic Offsets)"]
-    end
-
-    subgraph Stream Analytics Engine
-        P0 --> WindowEngine["Sliding / Tumbling Window Aggregator"]
-        P1 --> WindowEngine
-        P2 --> WindowEngine
-        P3 --> WindowEngine
-        WindowEngine --> AggDB[("Time-Bucket Aggregates")]
-    end
-
-    subgraph Consumption Layer
-        P0 --> Coordinator["Consumer Group Coordinator"]
-        P1 --> Coordinator
-        Coordinator --> Consumers["Consumer Workers (Offset Tracking & Lag)"]
-    end
-```
-
----
 
 ## ✨ Core Streaming Capabilities
 
